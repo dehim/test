@@ -7,9 +7,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
 RUN apk add --no-cache --virtual .build-deps build-base shadow bash binutils linux-headers g++ gcc re2c make cmake autoconf automake \
            nasm gettext libtool binutils-gold gnupg libgcc python 
 
-RUN addgroup www \
-    && adduser -G www -D -s /bin/bash www \
-    && make -p /usr/src \
+RUN make -p /usr/src \
     && chmod -R 777 /usr/src 
 
 
