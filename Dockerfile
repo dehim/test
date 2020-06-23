@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
     ICU_VERSION=67-1
 
 RUN apk add --no-cache --virtual .build-deps build-base shadow bash binutils linux-headers g++ gcc re2c make cmake autoconf automake \
-           nasm gettext libtool binutils-gold gnupg libgcc python 
+           nasm gettext libtool binutils-gold gnupg libgcc python libxml2-dev 
 
 RUN make -p /usr/src \
     && chmod -R 777 /usr/src 
