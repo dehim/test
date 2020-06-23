@@ -14,7 +14,7 @@ RUN addgroup www \
 
 
 # install intl-icu begin
-RUN cd /usr/src
+RUN cd /usr/src \
     && wget https://github.com/unicode-org/icu/archive/release-${ICU_VERSION}.tar.gz \
     && tar -zxf release-${ICU_VERSION}.tar.gz \
     && cd icu-release-${ICU_VERSION}/icu4c/source \
