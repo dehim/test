@@ -21,37 +21,3 @@ RUN cd /usr/src \
 # install intl-icu end
 
     
-# install php begin
-RUN cd /usr/src/ \
-#    && apk add --no-cache --virtual .build-deps g++ re2c nasm gettext libtool make autoconf automake \
-    && wget http://www.php.net/distributions/php-${PHP_VERSION}.tar.gz \
-    && tar -zxf php-$PHP_VERSION.tar.gz && cd php-$PHP_VERSION \
-    && ./configure \
-       --prefix=/production/server/php \
-       --with-config-file-path=/production/server/php/etc \
- #      --with-config-file-scan-dir=/production/server/php/etc/php.d \
-       --with-config-file-scan-dir=/shareVolume/config/php.d \
-       --disable-ipv6 \
-       --enable-bcmath \
-       --enable-calendar \
-       --enable-exif \
-       --enable-fpm \
-       --with-fpm-user=www \
-       --with-fpm-group=www \
-       --enable-intl \
-       --with-icu-dir=/usr/local/icu \
-       --without-pear \
-       --disable-debug \
-       --disable-phpdbg \
-    && make && make install \
-    && strip /production/server/php/bin/php \
-    && strip /production/server/php/bin/php-cgi \
-    && strip /production/server/php/sbin/php-fpm \
-#    && apk del .build-deps \
-#   && apk del build-base shadow binutils \
-    && mkdir -p /production/server/php/etc/php.d \
-    && echo "export PATH=\$PATH:/production/server/php/bin" >> ~/.bashrc \
-    && echo "export PATH=\$PATH:/production/server/php/sbin" >> ~/.bashrc \
-    && source ~/.bashrc 
-#    && rm -rf /usr/src/* \
-  # install php finish
